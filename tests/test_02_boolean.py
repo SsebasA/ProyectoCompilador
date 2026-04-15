@@ -2,7 +2,6 @@
 from unittest import TestCase
 from delta import Compiler, SyntaxMistake
 
-
 class TestBoolean(TestCase):
 
     def setUp(self):

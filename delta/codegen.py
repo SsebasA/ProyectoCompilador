@@ -19,6 +19,9 @@ class CodeGenerationVisitor(PTNodeVisitor):
     def visit_program(self, node, children):
         return CodeGenerationVisitor.WAT_TEMPLATE.format(children[0])
     
+    def visit_expression(self, node, children):
+        return children[0]
+
     def visit_boolean(self, node, childen):
         if childen[0] == 'true':
             return '    i32.const 1\n'
