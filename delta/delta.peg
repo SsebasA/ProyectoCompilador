@@ -1,0 +1,6 @@
+//#Gramática PEG del lenguaje delta
+
+program = expression EOF
+expression = decimal / boolean
+decimal = r'\d+'
+boolean = 'true' / 'false'
