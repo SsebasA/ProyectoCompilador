@@ -21,10 +21,11 @@ class SemanticVisitor(PTNodeVisitor):
     def symbol_table(self):
         return self.__symbol_table
     
-    def visit_expression(self, node, children):
+    def visit_decimal(self, node, children):
         value = int(node.value) 
         if value >= 2 ** 31:
             raise SemanticMistake(
                 'Out of range decimal integer literal at position '
                 f'{self.position(node=node)} => {value}'
             )
+    
