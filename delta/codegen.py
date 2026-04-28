@@ -69,3 +69,6 @@ class CodeGenerationVisitor(PTNodeVisitor):
 
     def visit_decimal(self, node, children):
         return f'    i32.const {node.value}\n'
+    
+    def visit_parenthesis(self, node, children):
+       return children[0]
