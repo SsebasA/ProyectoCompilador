@@ -1,5 +1,5 @@
 from arpeggio import PTNodeVisitor
-
+from collections import deque
 
 class CodeGenerationVisitor(PTNodeVisitor):
 
@@ -49,7 +49,10 @@ class CodeGenerationVisitor(PTNodeVisitor):
     def visit_binary(self, node, children):
         literal = node.value
         value = literal[2:]
-        return f'    i32.const {int(value, 2)}\n'
+        limit = 2**31
+        binary = int(value, 2)
+        if binary < limit:
+            return f'    i32.const {binary}\n'
     
     def visit_octal(self, node, children):
         literal = node.value
@@ -72,3 +75,19 @@ class CodeGenerationVisitor(PTNodeVisitor):
     
     def visit_parenthesis(self, node, children):
        return children[0]
+    
+    def visit_unary(self, node, children):
+        result = deque()
+        result.append(children[-1])
+        for operator in children[-2::-1]:
+            match operator:
+                case '+':
+                    ... #Do nothing 
+                case '-':
+                    result.appendleft('    i32.const 0\n')
+                    result.append('    i32.sub\n')
+                case '!':
+                    result.append('    i32.eqz\n')
+        
+        return ''.join(list(result))
+
