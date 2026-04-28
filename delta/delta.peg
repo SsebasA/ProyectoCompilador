@@ -3,8 +3,14 @@
 comment = r'[/][/].*|[/][*](.|\n)*?[*][/]'
 
 program = expression EOF
-expression = multiplicative (('+' / '-') multiplicative)*
+expression = multiplicative (('+' / '-') multiplicative)* 
 multiplicative = primary (('*' / '/' / '%') primary)*
-primary = decimal / boolean
+primary = decimal / boolean / binary / octal / hex
 decimal = r'\d+'
 boolean = 'true' / 'false'
+
+//#Gramatica de ejercicio A
+binary = r'(#b[0-1]+)'
+octal = r'(#o[0-7]+)'
+hex = r'(#x[a-fA-F0-9]+)'
+
