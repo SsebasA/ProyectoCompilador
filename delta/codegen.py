@@ -74,10 +74,9 @@ class CodeGenerationVisitor(PTNodeVisitor):
     def visit_binary(self, node, children):
         literal = node.value
         value = literal[2:]
-        limit = 2**31
         binary = int(value, 2)
-        if binary < limit:
-            return f'    i32.const {binary}\n'
+        return f'    i32.const {binary}\n'
+
     
     def visit_octal(self, node, children):
         literal = node.value

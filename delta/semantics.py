@@ -10,6 +10,7 @@ class SemanticMistake(Exception):
 class SemanticVisitor(PTNodeVisitor):
 
     RESERVED_WORDS = ["true", "false", "var"]
+    BIN_OCT_HEX_LIM = 2**31
 
     def __init__(self, parser, **kwargs):
         super().__init__(**kwargs)
@@ -61,4 +62,35 @@ class SemanticVisitor(PTNodeVisitor):
                 'Undeclared variable reference at position '
                 f'{self.position(node)} => {name}'
             )
+    
+    def visit_binary(self, node, children):
+        literal = node.value
+        value = literal[2:]
+        binary = int(value, 2)
+        if binary >= self.BIN_OCT_HEX_LIM:
+            raise SemanticMistake(
+                'Binary exceed 2^31 at position '
+                f'{self.position(node)} => {value}'
+            )
+    
+    def visit_octal(self, node, children):
+        literal = node.value
+        value = literal[2:]
+        octal = int(value, 8)
+        if octal >= self.BIN_OCT_HEX_LIM:
+             raise SemanticMistake(
+                'Octal exceed 2^31 at position '
+                f'{self.position(node)} => {value}'
+            )
+    
+    def visit_hex(self, node, children):
+        literal = node.value
+        value = literal[2:]
+        hexadecimal = int(value, 16)
+        if hexadecimal >= self.BIN_OCT_HEX_LIM:
+             raise SemanticMistake(
+                'Hexadecimal exceed 2^31 at position '
+                f'{self.position(node)} => {value}'
+            )
+    
     
