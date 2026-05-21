@@ -66,7 +66,7 @@ class CodeGenerationVisitor(PTNodeVisitor):
                     result.append('    i32.lt_s\n')
                 case '==':
                     result.append('    i32.eq\n')
-                case '=>':
+                case '>=':
                     result.append('    i32.ge_s\n')
                 case '<=':
                     result.append('    i32.le_s\n')
