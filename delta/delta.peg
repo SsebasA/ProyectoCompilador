@@ -13,7 +13,9 @@ decl_variable = identifier
 assignment = lhs_variable '=' expression ';'
 lhs_variable = identifier
 
-expression = multiplicative (('+' / '-') multiplicative)* 
+
+expression = additive (comp_op additive)*
+additive = multiplicative (('+' / '-') multiplicative)* 
 multiplicative = unary (('*' / '/' / '%') unary)*
 unary = ('+' / '-' / '!')* primary
 primary = decimal / boolean / binary / octal / hex / parenthesis / rhs_variable
@@ -27,3 +29,7 @@ hex = r'(#x[a-fA-F0-9]+)'
 
 parenthesis = '(' expression ')'
 rhs_variable = identifier
+
+
+//#Gramatica de ejercicio B 
+comp_op = ('<=' / '>=' / '==' / '<' / '>' / '!=')
