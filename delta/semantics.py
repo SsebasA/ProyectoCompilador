@@ -9,7 +9,7 @@ class SemanticMistake(Exception):
 
 class SemanticVisitor(PTNodeVisitor):
 
-    RESERVED_WORDS = ["true", "false", "var", "if", "else", "while"]
+    RESERVED_WORDS = ["true", "false", "var", "if", "else", "while", "do"]
     BIN_OCT_HEX_LIM = 2**31
 
     def __init__(self, parser, **kwargs):

@@ -68,6 +68,15 @@ class CodeGenerationVisitor(PTNodeVisitor):
 
         return ''.join(result)
     
+    def visit_do(self, node, children):
+        result = []
+        result.append('    loop\n')
+        result.append(children[0])
+        result.append(children[1])
+        result.append('    br_if 0\n')
+        result.append('    end\n')
+        return ''.join(result)
+    
     def visit_rhs_variable(self, node, children):
         name = node.value
         return f'    local.get ${name}\n'
