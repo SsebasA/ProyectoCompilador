@@ -6,7 +6,7 @@ identifier = r'[a-zA-Z]\w*'
 
 program = statement* expression EOF
 
-statement = declaration / assignment / if
+statement = declaration / assignment / if / while
 declaration = 'var' decl_variable (',' decl_variable)* ';'
 decl_variable = identifier
 
@@ -15,6 +15,8 @@ lhs_variable = identifier
 
 if = 'if' expression block ('else' block)? 
 block = '{' statement* '}'
+
+while = 'while' expression block
 
 expression = additive (comp_op additive)*
 additive = multiplicative (('+' / '-') multiplicative)* 

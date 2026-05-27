@@ -53,7 +53,20 @@ class CodeGenerationVisitor(PTNodeVisitor):
 
     def visit_block(self, node, children):
         return ''.join(children)
+    
+    def visit_while(self, node, children):
+        result = []
+        result.append('    block\n')
+        result.append('    loop\n')
+        result.append(children[0])
+        result.append('    i32.eqz\n')
+        result.append('    br_if 1\n')
+        result.append(children[1])
+        result.append('    br 0\n')
+        result.append('    end\n')
+        result.append('    end\n')
 
+        return ''.join(result)
     
     def visit_rhs_variable(self, node, children):
         name = node.value
