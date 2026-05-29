@@ -13,7 +13,7 @@ decl_variable = identifier
 assignment = lhs_variable '=' expression ';'
 lhs_variable = identifier
 
-if = 'if' expression block ('else' block)? 
+if = 'if' expression block ('else' 'if' expression block)* ('else' block)? 
 block = '{' statement* '}'
 
 while = 'while' expression block

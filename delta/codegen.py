@@ -42,12 +42,31 @@ class CodeGenerationVisitor(PTNodeVisitor):
     
     def visit_if(self, node, children):
         result = []
+        count_ifs = 0
         result.append(children[0])
         result.append('    if\n')
         result.append(children[1])
         if len(children) == 3:
             result.append('    else\n')
             result.append(children[2])
+        elif len(children) >= 4 and len(children) % 2 == 0:
+            for i in range(2, len(children), 2):
+                result.append('    else\n')
+                result.append(children[i])
+                result.append('    if\n')
+                result.append(children[i + 1])
+                count_ifs += 1
+        elif len(children) >= 5 and len(children) % 2 != 0:
+            for i in range(2, len(children) - 1, 2):
+                result.append('    else\n')
+                result.append(children[i])
+                result.append('    if\n')
+                result.append(children[i + 1])
+                count_ifs += 1
+            result.append('    else\n')
+            result.append(children[-1])
+        for c in range(count_ifs):
+            result.append('    end\n')
         result.append('    end\n')
         return ''.join(result)
 
