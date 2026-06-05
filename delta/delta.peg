@@ -19,7 +19,8 @@ block = '{' statement* '}'
 while = 'while' expression block
 do = 'do' block 'while' expression ';'
 
-expression = additive (comp_op additive)*
+expression = comparission ('&&' comparission)*
+comparission = additive (comp_op additive)*
 additive = multiplicative (('+' / '-') multiplicative)* 
 multiplicative = unary (('*' / '/' / '%') unary)*
 unary = ('+' / '-' / '!')* primary
