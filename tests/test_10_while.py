@@ -1,3 +1,4 @@
+# Author: A01749694 Sebastián Antonio Almanza
 # File: tests/test_10_while.py
 
 from unittest import TestCase

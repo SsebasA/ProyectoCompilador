@@ -1,4 +1,6 @@
+# Author: A01749694 Sebastián Antonio Almanza
 # File: tests/test_02_boolean.py 
+
 from unittest import TestCase
 from delta import Compiler, SyntaxMistake
 

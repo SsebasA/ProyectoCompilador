@@ -1,3 +1,5 @@
+# Author: A01749694 Sebastián Antonio Almanza
+
 from delta import Compiler, Phase
 
 source = '5 * 6 / 7 % 3'

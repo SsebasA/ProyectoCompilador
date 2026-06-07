@@ -1,5 +1,5 @@
+# Author: A01749694 Sebastián Antonio Almanza
 # File: tests/test_01_decimal.py
-
 from unittest import TestCase
 from delta import Compiler, SyntaxMistake
 from delta.semantics import SemanticMistake

@@ -1,3 +1,4 @@
+# Author: A01749694 Sebastián Antonio Almanza
 # File: tests/test_05_multiplicative.py
 
 from unittest import TestCase
