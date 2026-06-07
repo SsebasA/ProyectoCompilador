@@ -19,7 +19,8 @@ block = '{' statement* '}'
 while = 'while' expression block
 do = 'do' block 'while' expression ';'
 
-expression = comparission ('&&' comparission)*
+expression = logical_and ('||' logical_and)*
+logical_and = comparission ('&&' comparission)*
 comparission = additive (comp_op additive)*
 additive = multiplicative (('+' / '-') multiplicative)* 
 multiplicative = unary (('*' / '/' / '%') unary)*
